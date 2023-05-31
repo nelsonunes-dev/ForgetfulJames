@@ -21,7 +21,7 @@ Build an application that allows a user to login and maintain a shopping list.
 
 ## Optional
 <ol>
-	<li>[ ] Swagger/Swashbuckle implemented to explore the API.</li>
+	<li>[X] Swagger/Swashbuckle implemented to explore the API.</li>
 </ol>
 
 ## Additional
