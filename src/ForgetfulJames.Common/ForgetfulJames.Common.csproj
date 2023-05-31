@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Seeding\Json\book.seeding.json" />
+    <None Remove="Resources\Seeding\Json\Mock\book.seeding.mock.json" />
+    <None Remove="Resources\Seeding\Json\Mock\user.seeding.mock.json" />
+    <None Remove="Resources\Seeding\Json\user.seeding.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources\Seeding\Json\Mock\" />
+  </ItemGroup>
+
+</Project>
