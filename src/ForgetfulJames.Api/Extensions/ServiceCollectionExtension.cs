@@ -14,11 +14,7 @@ namespace ForgetfulJames.Api.Extensions
                     .AddNewtonsoftJson()
                     .AddXmlSerializerFormatters();
 
-            services.AddAuthentication("Bearer")
-                    .AddJwtBearer("Bearer", options => { options.SaveToken = true; });
-            
-            services.AddAuthorization();
-            
+            services.AddAuto0Services(configuration);
             services.AddAutoMapperServices();
 
             services.AddCors();
@@ -29,10 +25,12 @@ namespace ForgetfulJames.Api.Extensions
 
             services.AddSwaggerServices();
 
+            services.Configure<Auth0Options>(configuration.GetSection("Auth0"));
             services.Configure<ConnectionStringsOptions>(configuration.GetSection("ConnectionStrings"));
             services.Configure<CryptographyOptions>(configuration.GetSection("Cryptography"));
             services.Configure<InfrastructureOptions>(configuration.GetSection("Infrastructure"));
             services.Configure<JwtTokenOptions>(configuration.GetSection("JwtToken"));
+
 
             services.AddInfrastructureServices(configuration);
             services.AddDataServices();

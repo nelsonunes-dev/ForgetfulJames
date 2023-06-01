@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 
 namespace ForgetfulJames.Api.Configurations
@@ -17,29 +18,20 @@ namespace ForgetfulJames.Api.Configurations
 
                 c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
 
-                c.AddSecurityDefinition("bearer", new OpenApiSecurityScheme
+                var securitySchema = new OpenApiSecurityScheme
                 {
-                    Type = SecuritySchemeType.Http,
-                    In = ParameterLocation.Header,
+                    Description = "Using the Authorization header with the Bearer scheme.",
                     Name = "Authorization",
-                    Scheme = "bearer",
-                    BearerFormat = "JWT",
-                    Description = "JWT Authorization header using the Bearer scheme."
-                });
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "bearer"
+                };
+
+                c.AddSecurityDefinition("bearer", securitySchema);
 
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
-                    { 
-                        new OpenApiSecurityScheme 
-                        {
-                            Reference = new OpenApiReference
-                            {
-                                Type=ReferenceType.SecurityScheme,
-                                Id="Bearer"
-                            }
-                        },
-                        Array.Empty<string>()
-                    }
+                    { securitySchema, new[] { "Bearer" } }
                 });
             });
 
@@ -59,6 +51,8 @@ namespace ForgetfulJames.Api.Configurations
                 options.DefaultApiVersion = new ApiVersion(1, 0);
                 options.SubstituteApiVersionInUrl = true;
             });
+
+            //services.AddEndpointsApiExplorer();
 
             return services;
         }
