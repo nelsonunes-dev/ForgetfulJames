@@ -22,6 +22,7 @@ namespace ForgetfulJames.Api.Extensions
 
             webApplication.UseAuthorization();
             webApplication.UseAuthentication();
+
             webApplication.UseMiddleware<JwtMiddleware>();
             webApplication.MapControllers();
             webApplication.UseSwaggerServices();
