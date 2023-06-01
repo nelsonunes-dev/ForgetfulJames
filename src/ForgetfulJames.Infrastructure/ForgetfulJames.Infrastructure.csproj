@@ -21,11 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Configurations\" />
-    <Folder Include="Seeding\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\ForgetfulJames.Common\ForgetfulJames.Common.csproj" />
     <ProjectReference Include="..\ForgetfulJames.Domain\ForgetfulJames.Domain.csproj" />
     <ProjectReference Include="..\ForgetfulJames.Infrastructure.Abstractions\ForgetfulJames.Infrastructure.Abstractions.csproj" />

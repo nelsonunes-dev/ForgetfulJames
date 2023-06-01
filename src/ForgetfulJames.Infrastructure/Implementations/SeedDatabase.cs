@@ -1,4 +1,5 @@
 ﻿using ForgetfulJames.Infrastructure.Abstractions;
+using ForgetfulJames.Infrastructure.Seeding;
 
 namespace ForgetfulJames.Infrastructure.Implementations
 {
@@ -18,6 +19,7 @@ namespace ForgetfulJames.Infrastructure.Implementations
 
         public async Task SeedDatabaseAsync(bool useMockData, CancellationToken cancellationToken = default)
         {
+            await new ToDoSeeding().Seed(_dbContext, useMockData, cancellationToken);
         }
     }
 }

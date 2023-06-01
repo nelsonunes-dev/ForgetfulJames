@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ForgetfulJames.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 namespace ForgetfulJames.Infrastructure
@@ -12,5 +13,7 @@ namespace ForgetfulJames.Infrastructure
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             base.OnModelCreating(modelBuilder);
         }
+
+        DbSet<ToDo> ToDo { get; set; }
     }
 }
