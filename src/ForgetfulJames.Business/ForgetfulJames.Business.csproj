@@ -22,10 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Mappings\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\ForgetfulJames.Business.Abstractions\ForgetfulJames.Business.Abstractions.csproj" />
     <ProjectReference Include="..\ForgetfulJames.Data.Abstractions\ForgetfulJames.Data.Abstractions.csproj" />
   </ItemGroup>

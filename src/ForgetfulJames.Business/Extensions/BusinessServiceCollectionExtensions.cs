@@ -11,6 +11,7 @@ namespace ForgetfulJames.Business.Extensions
         public static IServiceCollection AddBusinessServices(this IServiceCollection services)
         {
             services.AddTransient<IInitialiseInfrastructureService, InitialiseInfrastructureService>();
+            services.AddTransient<IToDoService, ToDoService>();
             services.AddTransient<IJwtToken, JwtToken>();
 
             return services;
