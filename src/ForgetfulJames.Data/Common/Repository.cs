@@ -2,6 +2,7 @@
 using ForgetfulJames.Dto.Response;
 using ForgetfulJames.Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace ForgetfulJames.Data.Common
 {
@@ -9,11 +10,13 @@ namespace ForgetfulJames.Data.Common
     {
         protected ApplicationDbContext _dbContext;
         protected DbSet<T> _dbSet;
+        private readonly ILogger<T> _logger;
 
-        public Repository(ApplicationDbContext dbContext)
+        public Repository(ApplicationDbContext dbContext, ILogger<T> logger)
         {
             _dbContext = dbContext;
             _dbSet = _dbContext.Set<T>();
+            _logger = logger;
         }
 
         public async Task<ResponseDto> AddAsync(T entity, CancellationToken cancellationToken = default)
@@ -27,6 +30,7 @@ namespace ForgetfulJames.Data.Common
             }
             catch (Exception ex)
             {
+                _logger.LogError("{nameOf} threw an exception of {ex} with a message of {message}", nameof(AddAsync), ex, ex.Message);
                 response.Message = ex.Message;
             }
 
@@ -53,6 +57,7 @@ namespace ForgetfulJames.Data.Common
             }
             catch(Exception ex) 
             {
+                _logger.LogError("{nameOf} threw an exception of {ex} with a message of {message}", nameof(DeleteAsync), ex, ex.Message);
                 response.Message = ex.Message;
             }
 
@@ -67,6 +72,7 @@ namespace ForgetfulJames.Data.Common
             }
             catch (Exception ex)
             {
+                _logger.LogError("{nameOf} threw an exception of {ex} with a message of {message}", nameof(GetAllAsync), ex, ex.Message);
             }
 
             return Enumerable.Empty<T>();
@@ -80,6 +86,7 @@ namespace ForgetfulJames.Data.Common
             }
             catch(Exception ex) 
             {
+                _logger.LogError("{nameOf} threw an exception of {ex} with a message of {message}", nameof(GetByIdAsync), ex, ex.Message);
             }
 
             return null;
@@ -95,6 +102,7 @@ namespace ForgetfulJames.Data.Common
                 response.Success = true;
             } catch(Exception ex) 
             {
+                _logger.LogError("{nameOf} threw an exception of {ex} with a message of {message}", nameof(SaveAsync), ex, ex.Message);
                 response.Message = ex.Message;
             }
 
@@ -112,6 +120,7 @@ namespace ForgetfulJames.Data.Common
             }
             catch(Exception ex)
             {
+                _logger.LogError("{nameOf} threw an exception of {ex} with a message of {message}", nameof(UpdateAsync), ex, ex.Message);
                 response.Message = ex.Message;
             }
 

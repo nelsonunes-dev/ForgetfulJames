@@ -7,10 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\ForgetfulJames.Business.Abstractions\ForgetfulJames.Business.Abstractions.csproj" />
     <ProjectReference Include="..\ForgetfulJames.Domain\ForgetfulJames.Domain.csproj" />
     <ProjectReference Include="..\ForgetfulJames.Dto\ForgetfulJames.Dto.csproj" />
   </ItemGroup>
