@@ -11,10 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\ForgetfulJames.Data.Abstractions\ForgetfulJames.Data.Abstractions.csproj" />
     <ProjectReference Include="..\ForgetfulJames.Infrastructure\ForgetfulJames.Infrastructure.csproj" />
   </ItemGroup>
