@@ -1,13 +1,11 @@
 ﻿using ForgetfulJames.Business.Abstractions.Business;
 using ForgetfulJames.Data.Abstractions.Common;
 using ForgetfulJames.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ForgetfulJames.Data.Abstractions.Repositories
 {
-    public interface IToDoRepository : IToDo, IRepository<ToDo> { }
+    public interface IToDoRepository : IToDo, IRepository<ToDo> 
+    {
+        Task<IEnumerable<ToDo>> GetByUserIdAsync(string userId, CancellationToken cancellationToken = default);
+    }
 }

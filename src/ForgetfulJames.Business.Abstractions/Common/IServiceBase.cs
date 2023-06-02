@@ -6,7 +6,7 @@ namespace ForgetfulJames.Business.Abstractions.Common
     {
         Task<ResponseDto> AddAsync(T entity, CancellationToken cancellationToken = default);
         Task<ResponseDto> DeleteAsync(Guid id, CancellationToken cancellationToken = default);
-        Task<T?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
+        Task<IEnumerable<T>> GetByUserIdAsync(string userId, CancellationToken cancellationToken = default);
         Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken = default);
         Task<ResponseDto> UpdateAsync(T entity, CancellationToken cancellationToken = default);
     }
