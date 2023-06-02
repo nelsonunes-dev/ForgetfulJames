@@ -4,11 +4,6 @@ using ForgetfulJames.Data.Abstractions.Repositories;
 using ForgetfulJames.Domain.Entities;
 using ForgetfulJames.Dto.Entities;
 using ForgetfulJames.Dto.Response;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ForgetfulJames.Business.Services
 {
@@ -27,6 +22,7 @@ namespace ForgetfulJames.Business.Services
         {
             var toDo = _mapper.Map<ToDo>(entity);
             return await _toDoRepository.AddAsync(toDo, cancellationToken);
+
         }
 
         public async Task<ResponseDto> DeleteAsync(Guid id, CancellationToken cancellationToken = default)
@@ -39,9 +35,9 @@ namespace ForgetfulJames.Business.Services
             return _mapper.Map<IEnumerable<ToDoDto>>(await _toDoRepository.GetAllAsync(cancellationToken));
         }
 
-        public async Task<ToDoDto?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<ToDoDto>> GetByUserIdAsync(string userId, CancellationToken cancellationToken = default)
         {
-            return _mapper.Map<ToDoDto>(await _toDoRepository.GetByIdAsync(id, cancellationToken));
+            return _mapper.Map<IEnumerable<ToDoDto>>(await _toDoRepository.GetByUserIdAsync(userId, cancellationToken));
         }
 
         public async Task<ResponseDto> UpdateAsync(ToDoDto entity, CancellationToken cancellationToken = default)
