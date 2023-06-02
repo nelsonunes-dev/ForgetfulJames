@@ -36,12 +36,12 @@ namespace ForgetfulJames.Api.Controllers
 
         [ApiVersion("1.0")]
         [Authorize]
-        [HttpDelete("DeleteAsync/{id:Guid}")]
+        [HttpDelete("DeleteAsync/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> DeleteAsync(Guid id, CancellationToken cancellationToken = default)
+        public async Task<IActionResult> DeleteAsync(string id, CancellationToken cancellationToken = default)
         {
-            var response = await _toDoService.DeleteAsync(id, cancellationToken);
+            var response = await _toDoService.DeleteAsync(Guid.Parse(id), cancellationToken);
 
             if (response == null)
                 return BadRequest();
@@ -70,12 +70,12 @@ namespace ForgetfulJames.Api.Controllers
 
         [AllowAnonymous]
         [ApiVersion("1.0")]
-        [HttpGet("GetByIdAsync/{id:Guid}")]
+        [HttpGet("GetByUserIdAsync/{userId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+        public async Task<IActionResult> GetByUserIdAsync(string userId, CancellationToken cancellationToken = default)
         {
-            var response = await _toDoService.GetByIdAsync(id, cancellationToken);
+            var response = await _toDoService.GetByUserIdAsync(userId, cancellationToken);
 
             if (response == null)
                 return BadRequest(response);

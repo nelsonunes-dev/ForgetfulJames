@@ -17,8 +17,16 @@ namespace ForgetfulJames.Api.Extensions
             services.AddAuto0Services(configuration);
             services.AddAutoMapperServices();
 
-            services.AddCors();
-            
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(policy =>
+                {
+                    policy.WithOrigins("https://localhost:7092")
+                            .AllowAnyOrigin()
+                            .AllowAnyMethod();
+                });
+            });
+
             services.AddHttpContextAccessor();
             
             services.AddLogging();
