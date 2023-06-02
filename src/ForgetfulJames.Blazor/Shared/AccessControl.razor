@@ -1,0 +1,30 @@
+﻿@inject AuthenticationStateProvider AuthState
+@attribute [Authorize]
+
+<AuthorizeView>
+    <Authorized>
+        <h6>Welcome, @Username!</h6><a href="logout">Log out</a>
+    </Authorized>
+    <NotAuthorized>
+        <a href="login?redirectUri=/">Log in</a>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    private string Username = "Anonymous User";
+    private string Picture = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        var state = await AuthState.GetAuthenticationStateAsync();
+
+        Username = state.User.Identity.Name ?? string.Empty;
+
+        Picture = state.User.Claims
+                    .Where(c => c.Type.Equals("picture"))
+                    .Select(c => c.Value)
+                    .FirstOrDefault() ?? string.Empty;
+
+        await base.OnInitializedAsync();
+    }
+}
