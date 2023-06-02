@@ -26,7 +26,7 @@ namespace ForgetfulJames.Data.Common
             try
             {
                 await _dbSet.AddAsync(entity, cancellationToken);
-                response.Success = true;
+                return await SaveAsync();
             }
             catch (Exception ex)
             {
@@ -48,8 +48,7 @@ namespace ForgetfulJames.Data.Common
                 if (result != null)
                 {
                     _dbSet.Remove(result);
-                    response.Success = true;
-                    return response;
+                    return await SaveAsync();
                 }
 
                 response.Message = $"Record {id} does not exist and was not deleted.";
@@ -78,20 +77,6 @@ namespace ForgetfulJames.Data.Common
             return Enumerable.Empty<T>();
         }
 
-        public async Task<T?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await _dbSet.FindAsync(id);
-            }
-            catch(Exception ex) 
-            {
-                _logger.LogError("{nameOf} threw an exception of {ex} with a message of {message}", nameof(GetByIdAsync), ex, ex.Message);
-            }
-
-            return null;
-        }
-
         public async Task<ResponseDto> SaveAsync(CancellationToken cancellationToken = default)
         {
             var response = new ResponseDto();
@@ -116,7 +101,7 @@ namespace ForgetfulJames.Data.Common
             try
             {
                 await Task.FromResult(_dbSet.Update(entity).Entity);
-                response.Success = true;
+                return await SaveAsync();
             }
             catch(Exception ex)
             {
