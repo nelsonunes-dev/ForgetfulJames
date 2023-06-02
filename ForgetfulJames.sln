@@ -41,6 +41,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ForgetfulJames.Infrastructu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ForgetfulJames.Infrastructure.Abstractions", "src\ForgetfulJames.Infrastructure.Abstractions\ForgetfulJames.Infrastructure.Abstractions.csproj", "{C0D8AF8F-E2AB-427D-BD7B-2C8365837212}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ForgetfulJames.Blazor", "src\ForgetfulJames.Blazor\ForgetfulJames.Blazor.csproj", "{89E7C726-602B-4683-B108-4AB1DB6B48BD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +93,10 @@ Global
 		{C0D8AF8F-E2AB-427D-BD7B-2C8365837212}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0D8AF8F-E2AB-427D-BD7B-2C8365837212}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0D8AF8F-E2AB-427D-BD7B-2C8365837212}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89E7C726-602B-4683-B108-4AB1DB6B48BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89E7C726-602B-4683-B108-4AB1DB6B48BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89E7C726-602B-4683-B108-4AB1DB6B48BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89E7C726-602B-4683-B108-4AB1DB6B48BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -107,6 +113,7 @@ Global
 		{C10CF56F-D7DE-4D31-B340-E051972A5C98} = {1FAF6B46-324F-4217-AFBD-E490D47CDAD5}
 		{4FB3A884-861C-4E56-9771-367B9A86A876} = {FF9046BE-3AFE-4672-9562-27A9943E003B}
 		{C0D8AF8F-E2AB-427D-BD7B-2C8365837212} = {FF9046BE-3AFE-4672-9562-27A9943E003B}
+		{89E7C726-602B-4683-B108-4AB1DB6B48BD} = {9B7DB34C-9BFD-473A-AACF-67BE21ED88BB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0E6E2387-068A-4E08-8401-19BC4FD14DE1}
