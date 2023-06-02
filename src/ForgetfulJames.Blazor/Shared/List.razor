@@ -1,0 +1,79 @@
+﻿@using ForgetfulJames.Dto.Entities;
+@using System.Security.Claims;
+@using System.Text.Json;
+@using System.Text;
+@using Newtonsoft.Json;
+@using static System.Net.Mime.MediaTypeNames;
+@inject IHttpClientFactory ClientFactory
+@inject AuthenticationStateProvider AuthState
+
+<div class="card-body">
+    <div class="d-flex justify-content-end align-items-center mb-2 pt-2 pb-2">
+        <p class="small mb-0 me-2 text-muted">Filter</p>
+        <select class="form-select">
+            <option value="1">All</option>
+            <option value="2">Completed</option>
+            <option value="3">Active</option>
+            <option value="4">Has due date</option>
+        </select>
+        <p class="small mb-0 ms-4 me-2 text-muted">Sort</p>
+        <select class="form-select">
+            <option value="1">Added date</option>
+            <option value="2">Due date</option>
+        </select>
+    </div>
+
+    <table class="table mb-3">
+        <thead>
+            <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Status</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in toDoList)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Starred</td>
+                    <td>
+                        <button type="submit" class="btn btn-danger" @onclick="() => DeleteToDo(item.Id)">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@code {
+    private string userId = string.Empty;
+    private List<ToDoDto> toDoList = new List<ToDoDto>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var state = await AuthState.GetAuthenticationStateAsync();
+        userId = state.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+
+        var client = ClientFactory.CreateClient("Api");
+        var response = client.GetAsync($"api/v1/ToDo/GetByUserIdAsync/{userId}").Result;
+        if (response.IsSuccessStatusCode)
+        {
+            var json = await response.Content.ReadAsStringAsync();
+            toDoList = JsonConvert.DeserializeObject<List<ToDoDto>>(json);
+        }
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task DeleteToDo(string id)
+    {
+        var client = ClientFactory.CreateClient("Api");
+        var response = client.DeleteAsync($"api/v1/ToDo/DeleteAsync/{id}").Result;
+
+        if (response.IsSuccessStatusCode)
+        {
+            //
+        }
+    }
+}
