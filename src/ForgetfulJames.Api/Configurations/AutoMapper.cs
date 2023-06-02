@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ForgetfulJames.Business.Mappings;
 
 namespace ForgetfulJames.Api.Configurations
 {
@@ -8,7 +9,7 @@ namespace ForgetfulJames.Api.Configurations
         {
             var mapperConfig = new MapperConfiguration(config =>
             {
-                // TODO: Add Mappings
+                config.AddProfile(new ToDoMapping());
             });
 
             IMapper mapper = mapperConfig.CreateMapper();
